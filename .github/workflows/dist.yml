@@ -2,11 +2,16 @@
 name: 'Build and test wheels for release'
 
 on:
-  release:
-    types: [created]
+  push:
     branches:
       - 'master'
-      - 'devel'
+      - 'force_ci/all/**'    # For development, forcing all workflows to run.
+      - 'force_ci/build/**'  # For debugging and/or only forcing this workflow.
+#  release:
+#    types: [created]
+#    branches:
+#      - 'master'
+#      - 'devel'
 
 jobs:
   build_wheels:
@@ -21,12 +26,11 @@ jobs:
         name: 'Checkout source repository'
         with:
             fetch-depth: 0
-
       - uses: actions/setup-python@v4
         name: 'Set up Python 3.11'
         with:
           python-version: '3.11'
-
+      - run: sudo apt-get install qemu binfmt-support qemu-user-static -y
       - name: 'Install cibuildwheel'
         run: |
           python3 -m pip install cibuildwheel

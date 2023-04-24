@@ -7,7 +7,8 @@ build-backend = "setuptools.build_meta"
 build-frontend = "build"
 build = "cp3*"
 skip = ["*-win32", "*-manylinux_i686", "*-musllinux_*"]
-archs = ["x86_64", "aarch64"]
+# archs = ["x86_64", "aarch64"]
+archs = ["aarch64"]
 test-requires = ['.[test] pytest']
 test-command = ['pytest --pyargs rocksdb']
 
