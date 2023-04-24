@@ -6,6 +6,7 @@ on:
     types: [created]
     branches:
       - 'master'
+      - 'devel'
 
 jobs:
   build_wheels:
