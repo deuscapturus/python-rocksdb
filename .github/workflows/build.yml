@@ -5,7 +5,6 @@ on:
   pull_request:
   push:
     branches:
-      - 'devel'
       - 'master'
       - 'force_ci/all/**'    # For development, forcing all workflows to run.
       - 'force_ci/build/**'  # For debugging and/or only forcing this workflow.
