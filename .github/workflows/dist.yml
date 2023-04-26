@@ -2,11 +2,10 @@
 name: 'Build and test wheels for release'
 
 on:
-  push:
+  release:
+    types: [created]
     branches:
       - 'master'
-      - 'force_ci/all/**'    # For development, forcing all workflows to run.
-      - 'force_ci/build/**'  # For debugging and/or only forcing this workflow.
 
 jobs:
   build_wheels:
@@ -32,7 +31,6 @@ jobs:
       - name: 'Install cibuildwheel'
         run: |
           python3 -m pip install cibuildwheel
-
       - name: 'Build and test wheels'
         run: |
           python3 -m cibuildwheel --output-dir dist
