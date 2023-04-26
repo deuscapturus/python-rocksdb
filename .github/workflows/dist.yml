@@ -20,16 +20,17 @@ jobs:
         name: 'Checkout source repository'
         with:
             fetch-depth: 0
-
+      - name: setup qemu
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: 'arm64'
       - uses: actions/setup-python@v4
         name: 'Set up Python 3.11'
         with:
           python-version: '3.11'
-
       - name: 'Install cibuildwheel'
         run: |
           python3 -m pip install cibuildwheel
-
       - name: 'Build and test wheels'
         run: |
           python3 -m cibuildwheel --output-dir dist
